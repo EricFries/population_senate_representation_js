@@ -11,22 +11,21 @@ module.exports = {
   },
   devServer: {
     port: 8080,
-    hot: true,
-    devtool: 'cheap-module-eval-source-map'
+    hot: true
   },
-  module: { 
+  module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       }
-    ],
+    ]
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'}),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};

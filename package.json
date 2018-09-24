@@ -1,9 +1,11 @@
 {
   "name": "react-app-base",
   "version": "1.0.0",
+  "author": "Eric Fries",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"

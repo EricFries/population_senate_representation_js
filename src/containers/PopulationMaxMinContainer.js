@@ -5,9 +5,10 @@ import BarLoader from 'react-bar-loader';
 
 import { DARK_BLUE } from 'constants/colors';
 import { fetchHistoricalPopulationsMaxMin } from 'actions/historicalPopulations';
+import StateBreakdownContainer from 'containers/StateBreakdownContainer';
+import SenatePopulationStackedChart from 'components/SenatePopulationStackedChart';
 import PageContainer from 'ui_components/PageContainer';
 import InfoContainer from 'ui_components/InfoContainer';
-import SenatePopulationStackedChart from 'components/SenatePopulationStackedChart';
 
 const YEARS = [1990, 1980, 1970, 1960, 1950, 1940, 1930, 1920, 1910, 1900];
 
@@ -25,7 +26,6 @@ class PopulationMaxMinContainer extends React.Component {
   };
 
   componentDidMount() {
-    // this.fetchStates();
     this.fetchPopulations();
   }
 
@@ -34,10 +34,6 @@ class PopulationMaxMinContainer extends React.Component {
       this.fetchPopulations();
     }
   }
-
-  // fetchStates() {
-  //   axios.get(STATES_ENDPOINT).then(response => console.log(response));
-  // }
 
   fetchPopulations() {
     const { dispatch, year } = this.props;
@@ -55,7 +51,14 @@ class PopulationMaxMinContainer extends React.Component {
   };
 
   render() {
-    const { minStatesPercentage, maxStatesPercentage, year } = this.props;
+    const {
+      minStatesPercentage,
+      maxStatesPercentage,
+      maxStates,
+      minStates,
+      year
+    } = this.props;
+
     return (
       <PageContainer>
         <h1>The US Senate Isn&apos;t Representative of America.</h1>
@@ -64,22 +67,18 @@ class PopulationMaxMinContainer extends React.Component {
             <BarLoader color={DARK_BLUE} />
           ) : (
             <React.Fragment>
-              <div>
-                <p>
-                  {`In fact, in ${year}, ${minStatesPercentage}% of the US Population resided in states
+              <p>
+                {`In fact, in ${year}, ${minStatesPercentage}% of the US Population resided in states
                         that sent 50 Senators to Congress.`}
-                </p>
-                <p>
-                  {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
-                                    also sent 50 Senators to Congress.`}
-                </p>
-              </div>
-              <div>
-                <SenatePopulationStackedChart
-                  populationOne={minStatesPercentage}
-                  populationTwo={maxStatesPercentage}
-                />
-              </div>
+              </p>
+              <p>
+                {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
+                                    sent the same number 50 of Senators to Congress.`}
+              </p>
+              <SenatePopulationStackedChart
+                populationOne={minStatesPercentage}
+                populationTwo={maxStatesPercentage}
+              />
               <div style={{ textAlign: 'center' }}>
                 <label htmlFor="year">Explore Other Years: </label>
                 <select
@@ -95,6 +94,10 @@ class PopulationMaxMinContainer extends React.Component {
                   ))}
                 </select>
               </div>
+              <StateBreakdownContainer
+                maxStates={maxStates}
+                minStates={minStates}
+              />
             </React.Fragment>
           )}
         </InfoContainer>

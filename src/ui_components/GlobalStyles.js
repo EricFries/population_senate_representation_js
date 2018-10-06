@@ -28,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
     text-align: center;
   }
   .VictoryContainer tspan{
+    font-size: .75rem !important;
     font-family:  'Oswald', sans-serif !important;
   }
 `;

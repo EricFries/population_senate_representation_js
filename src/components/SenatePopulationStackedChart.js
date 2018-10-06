@@ -5,7 +5,6 @@ import {
   VictoryChart,
   VictoryLabel,
   VictoryBar,
-  VictoryTooltip,
   VictoryVoronoiContainer
 } from 'victory';
 

@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
+import { Pulse } from 'styled-spinkit';
+
+import { DARK_BLUE } from 'constants/colors';
 import { fetchHistoricalPopulationsMaxMin } from 'actions/historicalPopulations';
+import PageContainer from 'ui_components/PageContainer';
+import InfoContainer from 'ui_components/InfoContainer';
+import SenatePopulationStackedChart from 'components/SenatePopulationStackedChart';
 
 const YEARS = [1990, 1980, 1970, 1960, 1950, 1940, 1930, 1920, 1910, 1900];
 
@@ -18,6 +23,7 @@ class PopulationMaxMinContainer extends React.Component {
     dispatch: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
   };
+
   componentDidMount() {
     // this.fetchStates();
     this.fetchPopulations();
@@ -50,77 +56,49 @@ class PopulationMaxMinContainer extends React.Component {
 
   render() {
     const { minStatesPercentage, maxStatesPercentage, year } = this.props;
-
     return (
-      <div style={{ width: '800px', margin: 'auto' }}>
-        <h1 style={{ textAlign: 'center' }}>
-          The U.S. Senate Doesn&apos;t Represent All of America.
-        </h1>
-
+      <PageContainer>
         {this.readyToRender() ? (
           <React.Fragment>
-            <div
-              style={{
-                display: 'inline-block',
-                width: '45%',
-                verticalAlign: 'top'
-              }}
-            >
-              <p style={{ margin: 0 }}>
-                {`In fact, in ${year}, ${minStatesPercentage}% of the US Population resided in states
+            <InfoContainer>
+              <h1>The US Senate Isn&apos;t Representative of America.</h1>
+              <div>
+                <p>
+                  {`In fact, in ${year}, ${minStatesPercentage}% of the US Population resided in states
                         that sent 50 Senators to Congress.`}
-              </p>
-            </div>
-            <div
-              style={{
-                display: 'inline-block',
-                width: '45%',
-                verticalAlign: 'top'
-              }}
-            >
-              INSERT VISUALIZATION
-            </div>
-            <div
-              style={{
-                display: 'inline-block',
-                width: '45%',
-                verticalAlign: 'top'
-              }}
-            >
-              INSERT VISUALIZATION
-            </div>
-            <div
-              style={{
-                display: 'inline-block',
-                width: '45%',
-                verticalAlign: 'top'
-              }}
-            >
-              <p style={{ margin: 0 }}>
-                {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
-                                    sent 50 Senators to Congress.`}
-              </p>
-            </div>
-            <div>
-              <label htmlFor="year">Explore Other Years</label>
-              <select
-                value={year}
-                onChange={this.handleYearChange}
-                id="year"
-                name="year"
-              >
-                {YEARS.map(year => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
+                </p>
+                <p>
+                  {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
+                                    sent just 50 Senators to Congress.`}
+                </p>
+              </div>
+              <div>
+                <SenatePopulationStackedChart
+                  populationOne={minStatesPercentage}
+                  populationTwo={maxStatesPercentage}
+                />
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <label htmlFor="year">Explore Other Years: </label>
+                <select
+                  value={year}
+                  onChange={this.handleYearChange}
+                  id="year"
+                  name="year"
+                >
+                  {YEARS.map(year => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </InfoContainer>
           </React.Fragment>
         ) : (
-          <p>Loading...</p>
+          <Pulse color={DARK_BLUE} />
         )}
-      </div>
+      </PageContainer>
     );
   }
 }

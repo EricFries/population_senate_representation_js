@@ -4,15 +4,26 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchHistoricalPopulationsMaxMin } from 'actions/historicalPopulations';
 
+const YEARS = [1990, 1980, 1970, 1960, 1950, 1940, 1930, 1920, 1910, 1900];
+
 class PopulationMaxMinContainer extends React.Component {
+  static propTypes = {
+    year: PropTypes.string.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    maxStates: PropTypes.array.isRequired,
+    minStates: PropTypes.array.isRequired,
+    maxStatesPercentage: PropTypes.number,
+    minStatesPercentage: PropTypes.number,
+    lastFetched: PropTypes.number,
+    dispatch: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+  };
   componentDidMount() {
     // this.fetchStates();
     this.fetchPopulations();
   }
 
   componentDidUpdate(prevProps) {
-    console.log('year', this.props.year);
-    console.log('prevYear', prevProps.year);
     if (this.props.year !== prevProps.year) {
       this.fetchPopulations();
     }
@@ -24,9 +35,8 @@ class PopulationMaxMinContainer extends React.Component {
 
   fetchPopulations() {
     const { dispatch, year } = this.props;
-    console.log('fetching');
     const queryParams = { year };
-    return this.props.dispatch(fetchHistoricalPopulationsMaxMin(queryParams));
+    return dispatch(fetchHistoricalPopulationsMaxMin(queryParams));
   }
 
   readyToRender() {
@@ -93,9 +103,17 @@ class PopulationMaxMinContainer extends React.Component {
             </div>
             <div>
               <label htmlFor="year">Explore Other Years</label>
-              <select onChange={this.handleYearChange} id="year" name="year">
-                <option value="1990">1990</option>
-                <option value="1980">1980</option>
+              <select
+                value={year}
+                onChange={this.handleYearChange}
+                id="year"
+                name="year"
+              >
+                {YEARS.map(year => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
               </select>
             </div>
           </React.Fragment>
@@ -106,16 +124,6 @@ class PopulationMaxMinContainer extends React.Component {
     );
   }
 }
-
-PopulationMaxMinContainer.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
-  maxStates: PropTypes.array.isRequired,
-  minStates: PropTypes.array.isRequired,
-  maxStatesPercentage: PropTypes.number,
-  minStatesPercentage: PropTypes.number,
-  lastFetched: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
-};
 
 function mapStateToProps(state, ownProps) {
   return {

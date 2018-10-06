@@ -71,7 +71,7 @@ class PopulationMaxMinContainer extends React.Component {
                 </p>
                 <p>
                   {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
-                                    sent just 50 Senators to Congress.`}
+                                    also sent 50 Senators to Congress.`}
                 </p>
               </div>
               <div>

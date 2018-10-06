@@ -5,7 +5,8 @@ import {
   VictoryChart,
   VictoryLabel,
   VictoryBar,
-  VictoryTooltip
+  VictoryTooltip,
+  VictoryVoronoiContainer
 } from 'victory';
 
 import { DARK_BLUE, RED } from 'constants/colors';
@@ -24,7 +25,8 @@ class SenatePopulationStackedChart extends React.Component {
           duration: 750,
           onLoad: { duration: 200 }
         }}
-        domainPadding={40}
+        domainPadding={50}
+        containerComponent={<VictoryVoronoiContainer labels={d => `${d.y}%`} />}
       >
         <VictoryLabel
           x={225}
@@ -39,8 +41,7 @@ class SenatePopulationStackedChart extends React.Component {
           text="Percentage of U.S. Population"
         />
         <VictoryBar
-          labelComponent={<VictoryTooltip />}
-          barWidth={40}
+          barWidth={50}
           style={{ data: { fill: RED } }}
           data={[
             {
@@ -50,8 +51,7 @@ class SenatePopulationStackedChart extends React.Component {
           ]}
         />
         <VictoryBar
-          labelComponent={<VictoryTooltip />}
-          barWidth={40}
+          barWidth={50}
           style={{ data: { fill: DARK_BLUE } }}
           data={[
             {

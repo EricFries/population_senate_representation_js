@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Pulse } from 'styled-spinkit';
+import BarLoader from 'react-bar-loader';
 
 import { DARK_BLUE } from 'constants/colors';
 import { fetchHistoricalPopulationsMaxMin } from 'actions/historicalPopulations';
@@ -58,10 +58,12 @@ class PopulationMaxMinContainer extends React.Component {
     const { minStatesPercentage, maxStatesPercentage, year } = this.props;
     return (
       <PageContainer>
-        {this.readyToRender() ? (
-          <React.Fragment>
-            <InfoContainer>
-              <h1>The US Senate Isn&apos;t Representative of America.</h1>
+        <h1>The US Senate Isn&apos;t Representative of America.</h1>
+        <InfoContainer>
+          {!this.readyToRender() ? (
+            <BarLoader color={DARK_BLUE} />
+          ) : (
+            <React.Fragment>
               <div>
                 <p>
                   {`In fact, in ${year}, ${minStatesPercentage}% of the US Population resided in states
@@ -93,11 +95,9 @@ class PopulationMaxMinContainer extends React.Component {
                   ))}
                 </select>
               </div>
-            </InfoContainer>
-          </React.Fragment>
-        ) : (
-          <Pulse color={DARK_BLUE} />
-        )}
+            </React.Fragment>
+          )}
+        </InfoContainer>
       </PageContainer>
     );
   }

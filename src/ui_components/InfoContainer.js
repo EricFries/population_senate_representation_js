@@ -9,6 +9,7 @@ const InfoContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	min-height: 50vh;
 `;
 
 export default InfoContainer;

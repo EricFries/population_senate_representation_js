@@ -21,8 +21,8 @@ class SenatePopulationStackedChart extends React.Component {
       <VictoryChart
         title="Population / Senate Representation"
         animate={{
-          duration: 1000,
-          onLoad: { duration: 500 }
+          duration: 750,
+          onLoad: { duration: 200 }
         }}
         domainPadding={40}
       >

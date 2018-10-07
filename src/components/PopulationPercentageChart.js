@@ -10,7 +10,7 @@ import {
 
 import { DARK_BLUE, RED } from 'constants/colors';
 
-class SenatePopulationStackedChart extends React.Component {
+class PopulationPercentageChart extends React.Component {
   static propTypes = {
     populationOne: PropTypes.number.isRequired,
     populationTwo: PropTypes.number.isRequired
@@ -64,4 +64,4 @@ class SenatePopulationStackedChart extends React.Component {
   }
 }
 
-export default SenatePopulationStackedChart;
+export default PopulationPercentageChart;

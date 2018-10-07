@@ -6,7 +6,7 @@ import BarLoader from 'react-bar-loader';
 import { DARK_BLUE } from 'constants/colors';
 import { fetchHistoricalPopulationsMaxMin } from 'actions/historicalPopulations';
 import StateBreakdownContainer from 'containers/StateBreakdownContainer';
-import SenatePopulationStackedChart from 'components/SenatePopulationStackedChart';
+import PopulationPercentageChart from 'components/PopulationPercentageChart';
 import PageContainer from 'ui_components/PageContainer';
 import InfoContainer from 'ui_components/InfoContainer';
 
@@ -87,7 +87,7 @@ class PopulationMaxMinContainer extends React.Component {
               <p>
                 {`In other words, ${maxStatesPercentage}% of the US Population resided in states that sent the same number of Senators—50—to Congress.`}
               </p>
-              <SenatePopulationStackedChart
+              <PopulationPercentageChart
                 populationOne={minStatesPercentage}
                 populationTwo={maxStatesPercentage}
               />
@@ -120,7 +120,7 @@ class PopulationMaxMinContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    // Use 1990 when on the root.
+    // Use 2017 when on the root.
     year: ownProps.match.params.year || '2017',
     isFetching: state.historicalPopulations.isFetching,
     maxStates: state.historicalPopulations.maxStates,

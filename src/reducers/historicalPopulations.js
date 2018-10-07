@@ -24,11 +24,12 @@ function historicalPopulations(state = initialState, action) {
 		}
 		case FETCH_HISTORICAL_POPULATIONS_MAX_MIN_SUCCESS: {
 			const data = action.payload;
+			const reversedMinStates = data.min_states.slice(0).reverse();
 			return {
 				...state,
 				isFetching: false,
 				maxStates: data.max_states,
-				minStates: data.min_states,
+				minStates: reversedMinStates,
 				maxStatesPercentage: data.max_states_percentage,
 				minStatesPercentage: data.min_states_percentage,
 				lastFetched: Date.now()

@@ -13,7 +13,9 @@ class StateBreakdownTable extends React.Component {
     return (
       <tr key={state.id}>
         <td>{state.state_name}</td>
-        <td style={{ textAlign: 'right' }}>{state.population}</td>
+        <td style={{ textAlign: 'right' }}>
+          {state.population.toLocaleString()}
+        </td>
       </tr>
     );
   }

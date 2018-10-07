@@ -10,7 +10,21 @@ import SenatePopulationStackedChart from 'components/SenatePopulationStackedChar
 import PageContainer from 'ui_components/PageContainer';
 import InfoContainer from 'ui_components/InfoContainer';
 
-const YEARS = [1990, 1980, 1970, 1960, 1950, 1940, 1930, 1920, 1910, 1900];
+const YEARS = [
+  2017,
+  2010,
+  2000,
+  1990,
+  1980,
+  1970,
+  1960,
+  1950,
+  1940,
+  1930,
+  1920,
+  1910,
+  1900
+];
 
 class PopulationMaxMinContainer extends React.Component {
   static propTypes = {
@@ -68,12 +82,12 @@ class PopulationMaxMinContainer extends React.Component {
           ) : (
             <React.Fragment>
               <p>
-                {`In fact, in ${year}, ${minStatesPercentage}% of the US Population resided in states
+                {`In fact, in ${year}, just ${minStatesPercentage}% of the US Population resided in states
                         that sent 50 Senators to Congress.`}
               </p>
               <p>
                 {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
-                                    sent the same number 50 of Senators to Congress.`}
+                                    sent the same number of—50—Senators to Congress.`}
               </p>
               <SenatePopulationStackedChart
                 populationOne={minStatesPercentage}
@@ -109,7 +123,7 @@ class PopulationMaxMinContainer extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     // Use 1990 when on the root.
-    year: ownProps.match.params.year || '1990',
+    year: ownProps.match.params.year || '2017',
     isFetching: state.historicalPopulations.isFetching,
     maxStates: state.historicalPopulations.maxStates,
     minStates: state.historicalPopulations.minStates,

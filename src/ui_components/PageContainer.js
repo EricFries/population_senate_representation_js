@@ -11,9 +11,7 @@ const PageContainer = styled.div`
 	width: 800px;
 	margin: auto;
 	margin-top: 2rem;
-	display: flex;
 	height: 100vh;
-	flex-direction: column;
 	box-sizing: border-box;
 `;
 

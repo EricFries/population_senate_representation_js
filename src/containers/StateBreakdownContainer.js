@@ -28,11 +28,11 @@ class StateBreakdownContainer extends React.Component {
         {displayStateBreakdown && (
           <StyledStateBreakdown>
             <StateBreakdownTable
-              title="Least Populous States"
+              title="25 Most Populous States"
               states={maxStates}
             />
             <StateBreakdownTable
-              title="Most Populous States"
+              title="25 Least Populous States"
               states={minStates}
             />
           </StyledStateBreakdown>

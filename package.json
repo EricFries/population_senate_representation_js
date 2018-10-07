@@ -8,6 +8,7 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
+    "express": "^4.16.3",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-bar-loader": "^1.0.0",

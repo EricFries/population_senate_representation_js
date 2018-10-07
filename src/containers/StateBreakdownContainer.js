@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import StateBreakdownTable from 'components/StateBreakdownTable';
 import StyledStateBreakdown from 'ui_components/StateBreakdown';
+import TextButton from 'ui_components/TextButton';
 
 class StateBreakdownContainer extends React.Component {
   static propTypes = {
@@ -37,10 +38,10 @@ class StateBreakdownContainer extends React.Component {
             />
           </StyledStateBreakdown>
         )}
-        <div>
-          <button onClick={this.toggleDisplayStateBreakdown}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <TextButton onClick={this.toggleDisplayStateBreakdown}>
             {displayStateBreakdown ? 'Hide' : 'Show'} State Breakdown
-          </button>
+          </TextButton>
         </div>
       </React.Fragment>
     );

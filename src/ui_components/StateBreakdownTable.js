@@ -9,7 +9,6 @@ const StateBreakdownTable = styled.table`
 	}
 	width: 50%;
 	padding: 1rem;
-	margin-top: 1rem;
 	box-izing: border-box;
 `;
 

@@ -82,18 +82,16 @@ class PopulationMaxMinContainer extends React.Component {
           ) : (
             <React.Fragment>
               <p>
-                {`In fact, in ${year}, just ${minStatesPercentage}% of the US Population resided in states
-                        that sent 50 Senators to Congress.`}
+                {`In fact, in ${year}, just ${minStatesPercentage}% of the US Population resided in states that sent 50 Senators to Congress.`}
               </p>
               <p>
-                {`In other words, ${maxStatesPercentage}% of the US Population resided in states that
-                                    sent the same number of—50—Senators to Congress.`}
+                {`In other words, ${maxStatesPercentage}% of the US Population resided in states that sent the same number of Senators—50—to Congress.`}
               </p>
               <SenatePopulationStackedChart
                 populationOne={minStatesPercentage}
                 populationTwo={maxStatesPercentage}
               />
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
                 <label htmlFor="year">Explore Other Years: </label>
                 <select
                   value={year}
